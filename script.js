@@ -1,3 +1,97 @@
+// --- محرك شاشة الترحيب السيبرانية (Terminal Loader) ---
+function runTerminalLoader() {
+    const loaderText = document.getElementById('loader-text');
+    const preloader = document.getElementById('preloader');
+    if (!loaderText || !preloader) return;
+
+    const sequence = [
+        { text: "Hello...", action: "type" },
+        { text: "", action: "delete" },
+        { text: "Welcome to my profile...", action: "type" }
+    ];
+
+    let currentStep = 0;
+    
+    function executeSequence() {
+        if (currentStep >= sequence.length) {
+            // انتهاء الكتابة وتلاشي شاشة الترحيب ببطء وإظهار الموقع
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                // بدء تعبئة الأشرطة فور انتهاء الترحيب
+                animateProgressBars();
+            }, 800);
+            return;
+        }
+
+        let step = sequence[currentStep];
+        if (step.action === "type") {
+            let i = 0;
+            function typeWord() {
+                if (i < step.text.length) {
+                    loaderText.innerHTML += step.text.charAt(i);
+                    i++;
+                    setTimeout(typeWord, 100);
+                } else {
+                    currentStep++;
+                    setTimeout(executeSequence, 600);
+                }
+            }
+            typeWord();
+        } else if (step.action === "delete") {
+            function deleteWord() {
+                let currentText = loaderText.innerHTML;
+                if (currentText.length > 0) {
+                    loaderText.innerHTML = currentText.substring(0, currentText.length - 1);
+                    setTimeout(deleteWord, 50);
+                } else {
+                    currentStep++;
+                    setTimeout(executeSequence, 300);
+                }
+            }
+            setTimeout(deleteWord, 400);
+        }
+    }
+
+    // بدء التأثير بعد نصف ثانية من التحميل
+    setTimeout(executeSequence, 400);
+}
+
+// --- محرك تبديل اللغة الثنائي (AR / EN) ---
+function setupLanguageEngine() {
+    const langToggle = document.getElementById('langToggle');
+    if (!langToggle) return;
+
+    langToggle.addEventListener('click', () => {
+        const htmlTag = document.documentElement;
+        const currentLang = htmlTag.getAttribute('lang');
+        const nextLang = currentLang === 'en' ? 'ar' : 'en';
+        const nextDir = nextLang === 'ar' ? 'rtl' : 'ltr';
+
+        // تحديث السمات الأساسية للـ HTML
+        htmlTag.setAttribute('lang', nextLang);
+        htmlTag.setAttribute('dir', nextDir);
+
+        // تحديث نصوص زر التغيير
+        langToggle.querySelector('span').textContent = nextLang === 'en' ? 'العربية' : 'English';
+
+        // ترجمة جميع العناصر التي تحتوي على بيانات اللغتين
+        document.querySelectorAll('[data-en]').forEach(element => {
+            const translation = element.getAttribute(`data-${nextLang}`);
+            
+            // التحقق مما إذا كان العنصر يحتوي على أيقونة فرعية بداخله لمنع حذفها
+            const icon = element.querySelector('i');
+            if (icon) {
+                element.innerHTML = '';
+                element.appendChild(icon);
+                element.innerHTML += ' ' + translation;
+            } else {
+                element.textContent = translation;
+            }
+        });
+    });
+}
+
 // تشغيل الجزيئات السيبرانية بالخلفية
 function createParticles() {
     const bg = document.getElementById('animatedBg');
@@ -51,12 +145,12 @@ function animateProgressBars() {
                 observer.unobserve(bar); 
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.2 });
 
     progressBars.forEach(bar => observer.observe(bar));
 }
 
-// تشغيل روابط كروت الاتصال (تمت إضافة كرت GitHub هنا)
+// تشغيل روابط كروت الاتصال
 const contactCards = document.querySelectorAll('.contact-card');
 contactCards.forEach(card => {
     card.addEventListener('click', function() {
@@ -94,10 +188,11 @@ if (mobileMenuBtn && navMenu) {
     });
 }
 
-// تشغيل السكريبت عند تحميل الصفحة
+// تشغيل السكريبت والوظائف
 window.addEventListener('DOMContentLoaded', () => {
     createParticles();
-    animateProgressBars();
+    runTerminalLoader();
+    setupLanguageEngine();
     
     const yearEl = document.getElementById('currentYear');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
