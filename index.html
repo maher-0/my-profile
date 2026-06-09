@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,16 @@
     <meta name="description" content="Maher Alsharafi - Cybersecurity student at APU, CTF player, and security enthusiast">
     <meta name="keywords" content="Maher Alsharafi, cybersecurity, APU, CTF, Kali Linux, penetration testing">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="terminal-loader">
+            <span id="loader-text"></span><span class="cursor">|</span>
+        </div>
+    </div>
 
     <div class="animated-bg" id="animatedBg"></div>
     
@@ -28,9 +34,14 @@
             </a>
             <nav>
                 <ul id="navMenu">
-                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#home" data-en="Home" data-ar="الرئيسية"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#skills" data-en="Skills" data-ar="المهارات"><i class="fas fa-code"></i> Skills</a></li>
+                    <li><a href="#contact" data-en="Contact" data-ar="اتصل بي"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li>
+                        <button id="langToggle" class="lang-btn">
+                            <i class="fas fa-globe"></i> <span>العربية</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -42,35 +53,38 @@
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-text">
-                <p class="greeting">Hello, I'm Maher!</p>
+                <p class="greeting" data-en="Hello, I'm Maher!" data-ar="مرحباً، أنا ماهر!">Hello, I'm Maher!</p>
                 <h1>Maher <span>Alsharafi</span></h1>
-                <p class="subtitle"><i class="fas fa-terminal" style="color: var(--accent); margin-right: 10px;"></i> Cybersecurity Student & CTF Specialist</p>
-                <p class="description">
+                <p class="subtitle" id="hero-subtitle">
+                    <i class="fas fa-terminal" style="color: var(--accent); margin-right: 10px;"></i> 
+                    <span data-en="Cybersecurity Student & CTF Specialist" data-ar="طالب أمن سيبراني وخبير في منافسات CTF">Cybersecurity Student & CTF Specialist</span>
+                </p>
+                <p class="description" data-en="I am a dedicated Cybersecurity student at Asia Pacific University (APU) with a strong passion for securing digital systems and networks. My academic background and hands-on experience have equipped me with solid technical skills in ethical hacking, penetration testing, networking, and system administration, alongside a strong interest in Capture The Flag (CTF) competitions." data-ar="أنا طالب متخصص ومغرم بمجال الأمن السيبراني في جامعة آسيا والمحيط الهادئ (APU)، لدي شغف كبير بحماية الأنظمة الرقمية والشبكات. أهلتني خلفيتي الأكاديمية وخبرتي العملية لاكتساب مهارات تقنية قوية في الهكر الأخلاقي، واختبار الاختراق، وإدارة الشبكات والأنظمة، بالإضافة إلى اهتمامي الشديد بمنافسات التقاط العلم (CTF).">
                     I am a dedicated Cybersecurity student at Asia Pacific University (APU) with a strong passion for securing digital systems and networks. My academic background and hands-on experience have equipped me with solid technical skills in ethical hacking, penetration testing, networking, and system administration, alongside a strong interest in Capture The Flag (CTF) competitions.
                 </p>
                 
                 <div class="info-box">
-                    <p><strong><i class="fas fa-user"></i> Age:</strong> 22</p>
-                    <p><strong><i class="fas fa-calendar"></i> Date of Birth:</strong> February 12, 2004</p>
-                    <p><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> Malaysia</p>
-                    <p><strong><i class="fas fa-graduation-cap"></i> Status:</strong> Active Student</p>
+                    <p><strong data-en="Age:" data-ar="العمر:"><i class="fas fa-user"></i> Age:</strong> 22</p>
+                    <p><strong data-en="Date of Birth:" data-ar="تاريخ الميلاد:"><i class="fas fa-calendar"></i> Date of Birth:</strong> February 12, 2004</p>
+                    <p><strong data-en="Location:" data-ar="الموقع:"><i class="fas fa-map-marker-alt"></i> Location:</strong> Malaysia</p>
+                    <p><strong data-en="Status:" data-ar="الحالة:"><i class="fas fa-graduation-cap"></i> Status:</strong> Active Student</p>
                 </div>
                 
                 <div class="btn-group">
                     <a href="https://www.apu.edu.my/" target="_blank" class="university-link">
-                        <i class="fas fa-university"></i> Asia Pacific University (APU) <i class="fas fa-external-link-alt"></i>
+                        <i class="fas fa-university"></i> <span>Asia Pacific University (APU)</span> <i class="fas fa-external-link-alt"></i>
                     </a>
-                    <a href="mailto:maherk296@gmail.com?subject=Website%20Contact&body=Hello%20Maher%2C%0A%0A" class="university-link contact-btn">
-                        <i class="fas fa-envelope"></i> Contact Me! <i class="fas fa-paper-plane"></i>
+                    <a href="mailto:maherk296@gmail.com?subject=Website%20Contact" class="university-link contact-btn">
+                        <i class="fas fa-envelope"></i> <span data-en="Contact Me!" data-ar="تواصل معي!">Contact Me!</span> <i class="fas fa-paper-plane"></i>
                     </a>
                 </div>
             </div>
             
             <div class="profile-container">
-                <div class="floating-tech">Cybersecurity</div>
-                <div class="floating-tech">Python</div>
-                <div class="floating-tech">CTF Player</div>
-                <div class="floating-tech">APU Student</div>
+                <div class="floating-tech" data-en="Cybersecurity" data-ar="الأمن السيبراني">Cybersecurity</div>
+                <div class="floating-tech" data-en="Python" data-ar="بايثون">Python</div>
+                <div class="floating-tech" data-en="CTF Player" data-ar="لاعب CTF">CTF Player</div>
+                <div class="floating-tech" data-en="APU Student" data-ar="طالب APU">APU Student</div>
                 
                 <div class="profile-frame">
                     <img src="maher1.jpeg" alt="Maher Alsharafi" class="profile-img" id="profile-img">
@@ -82,17 +96,15 @@
 
     <section class="skills-section" id="skills">
         <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
+            <h2 class="section-title" data-en="Technical Expertise" data-ar="الخبرات التقنية">Technical Expertise</h2>
             <div class="skills-grid">
                 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <h3>CTF Player</h3>
-                    <p>Competitive cybersecurity challenges, cryptography, forensics, and security puzzle solving. Ranked in national and international CTF competitions.</p>
+                    <div class="skill-icon"><i class="fas fa-flag"></i></div>
+                    <h3 data-en="CTF Player" data-ar="حل تحديات CTF">CTF Player</h3>
+                    <p data-en="Competitive cybersecurity challenges, cryptography, forensics, and security puzzle solving. Ranked in national and international CTF competitions." data-ar="المشاركة في مسابقات الأمن السيبراني التنافسية، التشفير، التحقيق الجنائي الرقمي، وحل الألغاز الأمنية المتقدمة وحاصل على مراكز محلياً ودولياً.">Competitive cybersecurity challenges, cryptography, forensics, and security puzzle solving. Ranked in national and international CTF competitions.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="92%"></div>
                         </div>
@@ -100,13 +112,11 @@
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3>Python</h3>
-                    <p>Security automation, scripting, tool development, and data analysis for cybersecurity applications. Specialized in creating custom security tools.</p>
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <h3 data-en="Python" data-ar="لغة بايثون">Python</h3>
+                    <p data-en="Security automation, scripting, tool development, and data analysis for cybersecurity applications. Specialized in creating custom security tools." data-ar="أتمتة العمليات الأمنية، كتابة السكريبتات، تطوير الأدوات الخاصة، وتحليل البيانات لتطبيقات الأمن السيبراني. متخصص في بناء أدوات حماية مخصصة.">Security automation, scripting, tool development, and data analysis for cybersecurity applications. Specialized in creating custom security tools.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="88%"></div>
                         </div>
@@ -114,13 +124,11 @@
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Networking</h3>
-                    <p>Designing secure network architectures, configuring routers/switches, and analyzing protocols. Proficient in network defense and Wireshark.</p>
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3 data-en="Networking" data-ar="الشبكات">Networking</h3>
+                    <p data-en="Designing secure network architectures, configuring routers/switches, and analyzing protocols. Proficient in network defense and Wireshark." data-ar="تصميم معماريات الشبكات الآمنة، إعداد الموجهات والمبدلات (Routers/Switches)، وتحليل البروتوكولات. بارع في الدفاع عن الشبكات واستخدام Wireshark.">Designing secure network architectures, configuring routers/switches, and analyzing protocols. Proficient in network defense and Wireshark.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="85%"></div>
                         </div>
@@ -128,13 +136,11 @@
                 </div>
                 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>C++</h3>
-                    <p>System-level programming, performance optimization, and security-focused application development. Specialized in low-level security implementations.</p>
+                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 data-en="C++" data-ar="لغة C++">C++</h3>
+                    <p data-en="System-level programming, performance optimization, and security-focused application development. Specialized in low-level security implementations." data-ar="برمجة الأنظمة منخفضة المستوى، تحسين الأداء وتطوير البرمجيات التي تركز على الحماية والأمن. متمرس في التطبيقات البرمجية العميقة.">System-level programming, performance optimization, and security-focused application development. Specialized in low-level security implementations.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="74%"></div>
                         </div>
@@ -142,13 +148,11 @@
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-java"></i>
-                    </div>
-                    <h3>Java</h3>
-                    <p>Application security, secure coding practices, and enterprise development with focus on security. Experience in building secure applications.</p>
+                    <div class="skill-icon"><i class="fab fa-java"></i></div>
+                    <h3 data-en="Java" data-ar="لغة جافا">Java</h3>
+                    <p data-en="Application security, secure coding practices, and enterprise development with focus on security. Experience in building secure applications." data-ar="أمن التطبيقات، ممارسات البرمجة الآمنة، وتطوير الأنظمة البرمجية للمؤسسات والشركات مع التركيز على سد الثغرات البرمجية.">Application security, secure coding practices, and enterprise development with focus on security. Experience in building secure applications.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="70%"></div>
                         </div>
@@ -156,13 +160,11 @@
                 </div>
                 
                 <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>C#</h3>
-                    <p>.NET security framework, Windows applications, and secure software development methodologies. Proficient in secure application development.</p>
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3 data-en="C#" data-ar="لغة C#">C#</h3>
+                    <p data-en=".NET security framework, Windows applications, and secure software development methodologies. Proficient in secure application development." data-ar="إطار عمل .NET الأمني، برمجيات نظام ويندوز، ومنهجيات تطوير البرمجيات المحمية ضد الهندسة العكسية والاختراق والممتازة أمنياً.">.NET security framework, Windows applications, and secure software development methodologies. Proficient in secure application development.</p>
                     <div class="progress-wrapper">
-                        <span class="progress-title">Expertise Level</span>
+                        <span class="progress-title" data-en="Expertise Level" data-ar="مستوى الخبرة">Expertise Level</span>
                         <div class="progress-container">
                             <div class="progress-bar" data-progress="65%"></div>
                         </div>
@@ -175,32 +177,26 @@
 
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title">Connect With Me</h2>
+            <h2 class="section-title" data-en="Connect With Me" data-ar="تواصل معي">Connect With Me</h2>
             <div class="contact-grid">
                 <div class="contact-card" id="linkedin-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                     <h3>LinkedIn</h3>
-                    <p>Professional network & portfolio</p>
+                    <p data-en="Professional network & portfolio" data-ar="الشبكة المهنية ومعرض أعمالي">Professional network & portfolio</p>
                     <span class="contact-link">Maher Alsharafi <i class="fas fa-arrow-right"></i></span>
                 </div>
                 
                 <div class="contact-card" id="github-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
                     <h3>GitHub</h3>
-                    <p>Open source tools & projects</p>
+                    <p data-en="Open source tools & projects" data-ar="المشاريع والأدوات مفتوحة المصدر">Open source tools & projects</p>
                     <span class="contact-link">maher-0 <i class="fas fa-arrow-right"></i></span>
                 </div>
 
                 <div class="contact-card" id="whatsapp-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                     <h3>WhatsApp</h3>
-                    <p>Direct messaging for collaboration</p>
+                    <p data-en="Direct messaging for collaboration" data-ar="المراسلة المباشرة للمشاريع والتعاون">Direct messaging for collaboration</p>
                     <span class="contact-link">+60 11-3929 6602 <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
@@ -209,7 +205,7 @@
 
     <footer>
         <div class="container">
-            <p class="copyright">© <span id="currentYear"></span> Maher Farid Alsharafi.</p>
+            <p class="copyright" data-en="© Maher Farid Alsharafi. All rights reserved." data-ar="© جميع الحقوق محفوظة لـ ماهر فريد الشرفي.">© <span id="currentYear"></span> Maher Farid Alsharafi.</p>
             <div class="tech-stack">
                 <span class="tech-item">HTML5</span>
                 <span class="tech-item">CSS3</span>
